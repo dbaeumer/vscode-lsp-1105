@@ -1,0 +1,75 @@
+{
+	"name": "lsp-issue-1105",
+	"description": "A language server example",
+	"author": "Microsoft Corporation",
+	"license": "MIT",
+	"version": "1.0.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"publisher": "vscode-samples",
+	"categories": [],
+	"engines": {
+		"vscode": "^1.72.0"
+	},
+	"activationEvents": [
+	    "onLanguage:clojure"
+	],
+	"main": "./client/out/extension",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "Issue 1105 configuration",
+			"properties": {
+				"lsp-issue-1105.trace.server": {
+					"scope": "window",
+					"type": "string",
+					"enum": [
+						"off",
+						"messages",
+						"verbose"
+					],
+					"default": "off",
+					"description": "Traces the communication between VS Code and the language server."
+				}
+			}
+		},
+		"languages": [
+			{
+				"id": "clojure",
+				"aliases": [
+				"Clojure",
+				"clojure"
+				],
+				"extensions": [
+				".clj",
+				".cljs",
+				".cljc",
+				".cljd",
+				".cljx",
+				".clojure",
+				".edn",
+				".joke",
+				".boot",
+				".bb",
+				".calva-repl"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		]
+	},
+	"scripts": {
+		"compile": "tsc -b",
+		"watch": "tsc -b -w",
+		"lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
+		"postinstall": "cd client && npm install && cd ../server && npm install && cd .."
+	},
+	"devDependencies": {
+		"@types/node": "^16.11.7",
+		"@typescript-eslint/eslint-plugin": "^5.41.0",
+		"@typescript-eslint/parser": "^5.41.0",
+		"eslint": "^8.13.0",
+		"typescript": "^4.8.4"
+	}
+}
